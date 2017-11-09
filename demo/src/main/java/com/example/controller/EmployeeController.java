@@ -26,6 +26,4 @@ public class EmployeeController {
     public Employee getEmployee(@PathVariable("id") long id) {
 		return employeeService.getEmployeeById(id);
 	}
-    
-    
 }
