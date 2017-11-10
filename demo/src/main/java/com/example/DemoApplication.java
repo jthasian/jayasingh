@@ -7,8 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.example.model.Employee;
-import com.example.repository.EmployeeRepository;
+import com.example.model.User;
+import com.example.repository.UserRepository;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -21,12 +21,12 @@ public class DemoApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner setup(EmployeeRepository employeeRepository) {
+	public CommandLineRunner setup(UserRepository userRepository) {
 		return (args) -> {
-			employeeRepository.save(new Employee("Gustavo", "Ponce", true));
-			employeeRepository.save(new Employee("John", "Smith", true));
-			employeeRepository.save(new Employee("Jim ", "Morrison", false));
-			employeeRepository.save(new Employee("David", "Gilmour", true));
+			userRepository.save(new User("Gustavo", "Ponce", true));
+			userRepository.save(new User("John", "Smith", true));
+			userRepository.save(new User("Jim ", "Morrison", false));
+			userRepository.save(new User("David", "Gilmour", true));
 			logger.info("The sample data has been generated");
 		};
 	}

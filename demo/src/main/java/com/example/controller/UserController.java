@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.model.Employee;
-import com.example.service.EmployeeService;
+import com.example.model.User;
+import com.example.service.UserService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -19,10 +19,10 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @Api(value="userservice", description="user service detail")
-public class EmployeeController {
+public class UserController {
 	
 	@Autowired
-	private EmployeeService employeeService;
+	private UserService userService;
 	
 	@ApiOperation(value = "View a list of available users",response = Iterable.class)
     @ApiResponses(value = {
@@ -32,14 +32,14 @@ public class EmployeeController {
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
     }
     )
-    @RequestMapping(value = "/employee", method = RequestMethod.GET)
-    public List<Employee> getEmployees() {
-		return employeeService.getAllEmployees();
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public List<User> getUsers() {
+		return userService.getAllUsers();
 	}
 
-	@ApiOperation(value = "Search a user with an ID",response = Employee.class)
-    @RequestMapping(value = "/employee/{id}", method = RequestMethod.GET)
-    public Employee getEmployee(@PathVariable("id") long id) {
-		return employeeService.getEmployeeById(id);
+	@ApiOperation(value = "Search a user with an ID",response = User.class)
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+    public User getUser(@PathVariable("id") long id) {
+		return userService.getUserById(id);
 	}
 }
