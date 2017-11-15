@@ -17,7 +17,7 @@ public class SwaggerConfig {
 	public Docket productApi() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
 				.apis(RequestHandlerSelectors.basePackage("com.example.controller"))
-				.paths(regex("/employee.*")).build().apiInfo(metaData());
+				.paths(regex("/user.*")).build().apiInfo(metaData());
 	}
 
 	private ApiInfo metaData() {

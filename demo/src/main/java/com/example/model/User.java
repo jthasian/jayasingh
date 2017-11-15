@@ -10,21 +10,15 @@ public class User {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String name;
+	private String firstName;
 	private String lastName;
-	private boolean active;
+	private String userName;
+	private String password;
+	private String repeatPassword;
 	
 	public User() {
 		super();
 	}
-
-	public User(String name, String lastName, boolean active) {
-		super();
-		this.name = name;
-		this.lastName = lastName;
-		this.active = active;
-	}
-
 
 	public Long getId() {
 		return id;
@@ -34,12 +28,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public String getLastName() {
@@ -50,12 +44,29 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public boolean isActive() {
-		return active;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setActive(boolean active) {
-		this.active = active;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRepeatPassword() {
+		return repeatPassword;
+	}
+
+	public void setRepeatPassword(String repeatPassword) {
+		this.repeatPassword = repeatPassword;
+	}
+
 	
 }
