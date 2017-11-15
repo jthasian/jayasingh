@@ -2,14 +2,17 @@ package com.example.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class User {
 	
 	@Id
-	@GeneratedValue
-	private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	private String id;
 	private String name;
 	private String lastName;
 	private boolean active;
@@ -26,11 +29,11 @@ public class User {
 	}
 
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

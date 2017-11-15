@@ -1,4 +1,4 @@
-package com.example;
+package com.example.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,13 +17,13 @@ public class SwaggerConfig {
 	public Docket productApi() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
 				.apis(RequestHandlerSelectors.basePackage("com.example.controller"))
-				.paths(regex("/employee.*")).build().apiInfo(metaData());
+				.paths(regex("/v1/api/user.*")).build().apiInfo(metaData());
 	}
 
 	private ApiInfo metaData() {
-		ApiInfo apiInfo = new ApiInfo("Spring Boot REST API", "Spring Boot REST API for Online Store", "1.0",
+		ApiInfo apiInfo = new ApiInfo("User Registration REST API", "User Registration REST API User Registration ", "1.0",
 				"Terms of service",
-				new Contact("John Thompson", "https://springframework.guru/about/", "john@springfrmework.guru"),
+				new Contact("Test", "https://springframework.guru/about/", "test@test.com"),
 				"Apache License Version 2.0", "https://www.apache.org/licenses/LICENSE-2.0");
 		return apiInfo;
 	}

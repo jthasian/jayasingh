@@ -18,6 +18,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
+@RequestMapping("/v1/api")
 @Api(value="userservice", description="user service detail")
 public class UserController {
 	
