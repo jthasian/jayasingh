@@ -24,4 +24,16 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findAll();
 	}
 
+	@Override
+	public void saveUser(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isUserExist(User user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

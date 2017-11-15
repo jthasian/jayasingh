@@ -13,17 +13,21 @@ public class User {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
-	private String name;
+	private String firstName;
+
 	private String lastName;
+	private String userName;
+	private String password;
+	private String repeatPassword;
 	private boolean active;
 	
 	public User() {
 		super();
 	}
 
-	public User(String name, String lastName, boolean active) {
+	public User(String firstName, String lastName, boolean active) {
 		super();
-		this.name = name;
+		this.firstName = firstName;
 		this.lastName = lastName;
 		this.active = active;
 	}
@@ -37,12 +41,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public String getLastName() {
@@ -53,6 +57,30 @@ public class User {
 		this.lastName = lastName;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRepeatPassword() {
+		return repeatPassword;
+	}
+
+	public void setRepeatPassword(String repeatPassword) {
+		this.repeatPassword = repeatPassword;
+	}
+
 	public boolean isActive() {
 		return active;
 	}
@@ -60,5 +88,6 @@ public class User {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+
 	
 }
