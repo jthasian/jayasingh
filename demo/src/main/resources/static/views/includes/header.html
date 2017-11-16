@@ -9,11 +9,11 @@
           </button>
           <a class="navbar-brand" href="#">User Registration</a>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
+        <div id="navbar" class="collapse navbar-collapse" ng-controller="MenuController">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#!about">About</a></li>
-            <li><a href="#!contact">Contact</a></li>
+            <li data-ng-class="{active: isActive('/')}"><a href="#">Home</a></li>
+            <li data-ng-class="{active: isActive('/about')}"><a href="#!about">About</a></li>
+            <li data-ng-class="{active: isActive('/contact')}"><a href="#!contact">Contact</a></li>
           </ul>
           
           <ul class="nav navbar-nav navbar-right">
