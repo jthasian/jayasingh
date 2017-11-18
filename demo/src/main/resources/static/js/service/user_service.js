@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('regApp').factory('UserService', ['$http', '$q', function ($http, $q) {
+angular.module('userRegistrationApp').factory('UserService', ['$http', '$q', function ($http, $q) {
 
-    var REST_SERVICE_URI = 'https://localhost:8400/user/';
+    var REST_SERVICE_URI = 'http://localhost:8400/v1/api/user';
 
     var factory = {
         fetchAllUsers: fetchAllUsers,

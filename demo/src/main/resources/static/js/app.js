@@ -26,10 +26,23 @@ userRegistrationApp.config(function($routeProvider) {
 });
 
 // create the controller and inject Angular's $scope
-userRegistrationApp.controller('homeController', function($scope) {
-    // create a message to display in our view
-    $scope.message = 'Everyone come and see how good I look!';
-});
+userRegistrationApp.controller('homeController', ['$scope', 'UserService', function ($scope, UserService) {
+	$scope.users = [];
+	
+	fetchAllUsers();
+
+    function fetchAllUsers() {
+        UserService.fetchAllUsers()
+            .then(
+                function (d) {
+                	$scope.users = d;
+                },
+                function (errResponse) {
+                    console.error('Error while fetching Users');
+                }
+            );
+    }
+}]);
 
 userRegistrationApp.controller('aboutController', function($scope) {
 	console.log("in about")
@@ -38,7 +51,8 @@ userRegistrationApp.controller('aboutController', function($scope) {
 
 userRegistrationApp.controller('contactController', function($scope) {
     $scope.message = 'Contact us! JK. This is just a demo.';
-});
+
+    });
 
 
 userRegistrationApp.controller('MenuController', function ($scope, $location) {

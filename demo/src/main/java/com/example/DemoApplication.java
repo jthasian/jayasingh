@@ -23,11 +23,11 @@ public class DemoApplication {
 	@Bean
 	public CommandLineRunner setup(UserRepository userRepository) {
 		return (args) -> {
-//			userRepository.save(new User("Gustavo", "Ponce", true));
-//			userRepository.save(new User("John", "Smith", true));
-//			userRepository.save(new User("Jim ", "Morrison", false));
-//			userRepository.save(new User("David", "Gilmour", true));
-//			logger.info("The sample data has been generated");
+			userRepository.save(new User("Gustavo", "Ponce", true));
+			userRepository.save(new User("John", "Smith", true));
+			userRepository.save(new User("Jim ", "Morrison", false));
+			userRepository.save(new User("David", "Gilmour", true));
+			logger.info("The sample data has been generated");
 		};
 	}
 }
