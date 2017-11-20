@@ -50,8 +50,9 @@ public class UserController {
 	}
 	
 	 /* Create a user */
+	@ApiOperation(value = "Create a user",response = User.class)
     @RequestMapping(
-            value = "objects",
+            value = "user",
             method = RequestMethod.POST)
     public ResponseEntity<User> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
         if (userService.isUserExist(user)) {

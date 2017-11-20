@@ -19,6 +19,10 @@ public class User {
 	private String userName;
 	private String password;
 	private String repeatPassword;
+	private String email;
+	private Integer phoneNumber;
+	private Address address;
+
 	private boolean active;
 	
 	public User() {
@@ -89,5 +93,27 @@ public class User {
 		this.active = active;
 	}
 
-	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Integer getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(Integer phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 }
