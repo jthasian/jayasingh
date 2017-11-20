@@ -1,42 +1,54 @@
-body, #mainWrapper {
-    height: 70%;
-    background-color: rgb(245, 245, 245);
+body{
+    padding:50px;
 }
 
-body, .form-control {
-    font-size: 12px !important;
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
 }
-
-.floatRight {
-    float: right;
-    margin-right: 18px;
+#login-dp .help-block{
+    font-size:12px    
 }
-
-.has-error {
-    color: red;
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
 }
-
-.formcontainer {
-    background-color: rgba(234, 231, 231, 0.82);
-    padding: 30px;
+#login-dp .social-buttons{
+    margin:12px 0    
 }
-
-.tablecontainer {
-    padding-left: 20px;
+#login-dp .social-buttons a{
+    width: 49%;
 }
-
-.generic-container {
-    width: 80%;
-    margin-left: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 20px;
-    background-color: #EAE7E7;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 0 30px black;
+#login-dp .form-group {
+    margin-bottom: 10px;
 }
-
-.custom-width {
-    width: 80px !important;
+.btn-fb{
+    color: #fff;
+    background-color:#3b5998;
+}
+.btn-fb:hover{
+    color: #fff;
+    background-color:#496ebc 
+}
+.btn-tw{
+    color: #fff;
+    background-color:#55acee;
+}
+.btn-tw:hover{
+    color: #fff;
+    background-color:#59b5fa;
+}
+@media(max-width:768px){
+    #login-dp{
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dp .bottom{
+        background-color: inherit;
+        border-top:0 none;
+    }
 }

@@ -22,7 +22,17 @@ userRegistrationApp.config(function($routeProvider) {
         .when('/contact', {
             templateUrl : 'views/contact.html',
             controller  : 'contactController'
-        });
+        })
+        // route for the contact page
+	    .when('/searchUser', {
+	        templateUrl : 'views/searchUser.html',
+	        controller  : 'searchUserController'
+	    })
+	 	// route for the contact page
+	    .when('/registration', {
+	        templateUrl : 'views/registration.html',
+	        controller  : 'registrationController'
+	    });
 });
 
 // create the controller and inject Angular's $scope
@@ -52,11 +62,58 @@ userRegistrationApp.controller('aboutController', function($scope) {
 userRegistrationApp.controller('contactController', function($scope) {
     $scope.message = 'Contact us! JK. This is just a demo.';
 
-    });
+});
 
+userRegistrationApp.controller('searchUserController', function($scope) {
+	
+
+});
+
+userRegistrationApp.directive('googleplace', function() {
+	
+	var placeSearch, autocomplete;
+    var componentForm = {
+      street_number: 'short_name',
+      route: 'long_name',
+      locality: 'long_name',
+      administrative_area_level_1: 'short_name',
+      country: 'long_name',
+      postal_code: 'short_name'
+    };
+
+    
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attrs, model) {
+            var options = {
+                types: [],
+                componentRestrictions: {country: 'in'}
+            };
+            scope.gPlace = new google.maps.places.Autocomplete(element[0], options);
+
+            google.maps.event.addListener(scope.gPlace, 'place_changed', function() {
+                scope.$apply(function() {
+                    model.$setViewValue(element.val());                
+                });
+                
+            });
+           
+        
+        }
+    };
+});
 
 userRegistrationApp.controller('MenuController', function ($scope, $location) {
     $scope.isActive = function (path) {
        return $location.path() === path;
+    }
+});
+
+userRegistrationApp.controller('registrationController', function ($scope, $location) {
+	//This will hide the DIV by default.
+    $scope.IsVisible = false;
+    $scope.ShowHide = function () {
+        //If DIV is visible it will be hidden and vice versa.
+        $scope.IsVisible = $scope.showInMap;
     }
 });
