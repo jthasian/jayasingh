@@ -110,26 +110,25 @@ userRegistrationApp.service('Map', function($q) {
               };
               lat = pos.lat;
           	  lng = pos.lng;
-          	var options = {
-                    center: new google.maps.LatLng(lat, lng),
-                    zoom: 13,
-                    disableDefaultUI: true    
-                }
-                this.map = new google.maps.Map(
-                    document.getElementById("map"), options
-                );
-	          	var marker = new google.maps.Marker({
-	        		map: this.map,
-	                position: new google.maps.LatLng(lat, lng),
-	                title: 'Ambarrukmo Plaza Yogyakarta'
-	                
-	              });
-                this.places = new google.maps.places.PlacesService(this.map);
-                
-                console.log( 'lat '+ lat + ' lng ' + lng ); 
+              console.log( 'lat '+ lat + ' lng ' + lng ); 
     	})};
-    	
-        
+ 
+    	var options = {
+                center: new google.maps.LatLng(lat, lng),
+                zoom: 13,
+                disableDefaultUI: true    
+            }
+    	this.map = new google.maps.Map(
+                document.getElementById("map"), options
+            );
+          	var marker = new google.maps.Marker({
+        		map: this.map,
+                position: new google.maps.LatLng(lat, lng),
+                title: 'Ambarrukmo Plaza Yogyakarta'
+                
+              });
+            this.places = new google.maps.places.PlacesService(this.map);
+            console.log( 'this.places '+ this.places); 
     }
     
     this.search = function(str) {
