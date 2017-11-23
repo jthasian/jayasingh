@@ -70,3 +70,15 @@ h3 img {
     border-radius: 5px;
     border: 1px solid silver;
 }
+
+
+.user {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}

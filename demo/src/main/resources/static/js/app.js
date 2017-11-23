@@ -32,6 +32,11 @@ userRegistrationApp.config(function($routeProvider) {
 	    .when('/registration', {
 	        templateUrl : 'views/registration.html',
 	        controller  : 'registrationController'
+	    })
+	    // route for the view user page
+	    .when('/viewUser', {
+	        templateUrl : 'views/viewUser.html',
+	        controller  : 'userController'
 	    });
 });
 
@@ -95,15 +100,36 @@ userRegistrationApp.controller('searchUserController', function($scope, Map) {
 userRegistrationApp.service('Map', function($q) {
     
     this.init = function() {
-        var options = {
-            center: new google.maps.LatLng(40.7127837, -74.00594130000002),
-            zoom: 13,
-            disableDefaultUI: true    
-        }
-        this.map = new google.maps.Map(
-            document.getElementById("map"), options
-        );
-        this.places = new google.maps.places.PlacesService(this.map);
+    	var lat = '';
+    	var lng = '';
+    	if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+              var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              };
+              lat = pos.lat;
+          	  lng = pos.lng;
+          	var options = {
+                    center: new google.maps.LatLng(lat, lng),
+                    zoom: 13,
+                    disableDefaultUI: true    
+                }
+                this.map = new google.maps.Map(
+                    document.getElementById("map"), options
+                );
+	          	var marker = new google.maps.Marker({
+	        		map: this.map,
+	                position: new google.maps.LatLng(lat, lng),
+	                title: 'Ambarrukmo Plaza Yogyakarta'
+	                
+	              });
+                this.places = new google.maps.places.PlacesService(this.map);
+                
+                console.log( 'lat '+ lat + ' lng ' + lng ); 
+    	})};
+    	
+        
     }
     
     this.search = function(str) {
@@ -177,4 +203,9 @@ userRegistrationApp.controller('registrationController', function ($scope, $loca
         //If DIV is visible it will be hidden and vice versa.
         $scope.IsVisible = $scope.showInMap;
     }
+});
+
+userRegistrationApp.controller('userController', function($scope, Map) {
+    
+    Map.init();
 });
