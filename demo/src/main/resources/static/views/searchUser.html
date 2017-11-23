@@ -1,26 +1,25 @@
 <div class="container">
 
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<div class="row">
-				<div class="col-md-2"></div>
-				<div class="col-md-8">
-					<h3 class="text-primary">Location Search:</h3>
-					<hr style="border-top: 1px dotted #000;" />
-					<form name="searchForm" novalidate ng-submit="search()">
-						<div class="col-sm-4 input-group">
-							<input type="text" ng-model="searchPlace" id="value"
-								class="form-control input-xs" googleplace
-								placeholder="Enter address" /> <span class="input-group-btn">
-								<button class="btn btn-xs btn-primary"
-									ng-disabled="searchForm.$invalid">Search</button>
-							</span>
-						</div>
-					</form>
+	<div class="row">
+		<div class="col-md-12 appt-list">
+			<form class="form-horizontal" name="searchForm" novalidate
+				ng-submit="search()">
+				<fieldset>
+					<!-- Form Name -->
+					<legend>
+						<h3 class="text-primary">Search By Location</h3>
+					</legend>
+					<div class="col-sm-4 input-group">
+						<input type="text" ng-model="searchPlace" id="value"
+							class="form-control input-xs" googleplace
+							placeholder="Enter address" /> <span class="input-group-btn">
+							<button class="btn btn-xs btn-primary"
+								ng-disabled="searchForm.$invalid">Search</button>
+						</span>
+					</div>
 					<div id="map"></div>
-				</div>
-			</div>
-
+				</fieldset>
+			</form>
 		</div>
 	</div>
 </div>
