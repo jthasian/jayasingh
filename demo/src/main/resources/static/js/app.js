@@ -99,9 +99,10 @@ userRegistrationApp.controller('searchUserController', function($scope, Map) {
 
 userRegistrationApp.service('Map', function($q) {
 	
+	var map;
 	this.init = function() {
 		if(!!navigator.geolocation) {
-			var map;
+			
 			
 			var mapOptions = {
 				zoom: 15,
@@ -113,11 +114,11 @@ userRegistrationApp.service('Map', function($q) {
 			navigator.geolocation.getCurrentPosition(function(position) {
 			
 				var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-				
+
 				var marker = new google.maps.Marker({
 	        		map: map,
 	                position: geolocate,
-	                title: 'Ambarrukmo Plaza Yogyakarta'
+	                title: 'You are here'
 	                
 	              });
 	            				
@@ -193,13 +194,15 @@ userRegistrationApp.service('Map', function($q) {
     }
     
     this.addMarker = function(res) {
+    	
         if(this.marker) this.marker.setMap(null);
         this.marker = new google.maps.Marker({
-            map: this.map,
+            map: map,
             position: res.geometry.location,
-            animation: google.maps.Animation.DROP
+            animation: google.maps.Animation.DROP,
+            title: res.formatted_address
         });
-        this.map.setCenter(res.geometry.location);
+        map.setCenter(res.geometry.location);
     }
     
 });
