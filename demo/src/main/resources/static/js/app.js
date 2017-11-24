@@ -98,38 +98,88 @@ userRegistrationApp.controller('searchUserController', function($scope, Map) {
 });
 
 userRegistrationApp.service('Map', function($q) {
-    
-    this.init = function() {
-    	var lat = '';
-    	var lng = '';
-    	if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-              var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-              };
-              lat = pos.lat;
-          	  lng = pos.lng;
-              console.log( 'lat '+ lat + ' lng ' + lng ); 
-    	})};
- 
-    	var options = {
-                center: new google.maps.LatLng(lat, lng),
-                zoom: 13,
-                disableDefaultUI: true    
-            }
-    	this.map = new google.maps.Map(
-                document.getElementById("map"), options
-            );
-          	var marker = new google.maps.Marker({
-        		map: this.map,
-                position: new google.maps.LatLng(lat, lng),
-                title: 'Ambarrukmo Plaza Yogyakarta'
-                
-              });
-            this.places = new google.maps.places.PlacesService(this.map);
-            console.log( 'this.places '+ this.places); 
-    }
+	
+	this.init = function() {
+		if(!!navigator.geolocation) {
+			var map;
+			
+			var mapOptions = {
+				zoom: 15,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			
+			map = new google.maps.Map(document.getElementById('map'), mapOptions);
+		
+			navigator.geolocation.getCurrentPosition(function(position) {
+			
+				var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+				
+				var marker = new google.maps.Marker({
+	        		map: map,
+	                position: geolocate,
+	                title: 'Ambarrukmo Plaza Yogyakarta'
+	                
+	              });
+	            				
+				map.setCenter(geolocate);
+				
+			});
+			
+		} else {
+			document.getElementById('map').innerHTML = 'No Geolocation Support.';
+		}
+		this.places = new google.maps.places.PlacesService(map);
+	}
+	
+//    this.init = function() {
+//    	var lat = '';
+//    	var lng = '';
+//    	if (!!navigator.geolocation) {
+//            navigator.geolocation.getCurrentPosition(function(position) {
+//              var pos = {
+//                lat: position.coords.latitude,
+//                lng: position.coords.longitude
+//              };
+//              lat = pos.lat;
+//          	  lng = pos.lng;
+//              console.log( 'lat '+ lat + ' lng ' + lng ); 
+//
+//              openMap(lat, lng);
+//    	})};
+//    }
+//    
+//    var openMap = function(lat, lng) {
+//    	var options = {
+//                center: new google.maps.LatLng(lat, lng),
+//                zoom: 13,
+//                disableDefaultUI: true    
+//            }
+//    	this.map = new google.maps.Map(
+//                document.getElementById("map"), options
+//            );
+//          	var marker = new google.maps.Marker({
+//        		map: this.map,
+//                position: new google.maps.LatLng(lat, lng),
+//                title: 'Ambarrukmo Plaza Yogyakarta'
+//                
+//              });
+//            this.places = new google.maps.places.PlacesService(this.map);
+//            
+//            var geolocate = new google.maps.LatLng(lat, lng);
+//            
+//            var infowindow = new google.maps.InfoWindow({
+//                map: this.map,
+//                position: geolocate,
+//                content:
+//                    '<h1>Location pinned from HTML5 Geolocation!</h1>' +
+//                    '<h2>Latitude: ' + lat + '</h2>' +
+//                    '<h2>Longitude: ' + lng + '</h2>'
+//            });
+//            
+//            this.map.setCenter(geolocate);
+//            
+//            console.log( 'this.places '+ this.places[0]); 
+//    }
     
     this.search = function(str) {
         var d = $q.defer();
