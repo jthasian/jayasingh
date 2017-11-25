@@ -12,6 +12,14 @@
 					<div class="col-sm-4 input-group">
 						<input type="text" ng-model="searchPlace" id="value"
 							class="form-control input-xs" googleplace
+							address1=user.addressLine1 
+								address2=user.addressLine2
+								city=user.city 
+								state=user.state 
+								country=user.country
+								zip=user.postalCode
+								latitude=user.latitude
+								longitude=user.longitude
 							placeholder="Enter address" /> <span class="input-group-btn">
 							<button class="btn btn-xs btn-primary"
 								ng-disabled="searchForm.$invalid">Search</button>

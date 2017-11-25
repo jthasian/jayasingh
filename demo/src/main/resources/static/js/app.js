@@ -220,9 +220,19 @@ userRegistrationApp.directive('googleplace', function() {
       postal_code: 'short_name'
     };
 
-    
     return {
         require: 'ngModel',
+        scope: {
+            ngModel: '=',
+            address1: "=",
+            address2: "=",
+            city: "=",
+            state: "=",
+            country: "=",
+            zip: '=',
+            latitude: '=',
+            longitude: '=',
+        },
         link: function(scope, element, attrs, model) {
             var options = {
                 types: [],
@@ -232,14 +242,138 @@ userRegistrationApp.directive('googleplace', function() {
 
             google.maps.event.addListener(scope.gPlace, 'place_changed', function() {
                 scope.$apply(function() {
-                    model.$setViewValue(element.val());                
+                	
+                	
+                	var place = scope.gPlace.getPlace();
+                	
+                    var components = place.address_components;  // from Google API place object   
+
+                    scope.address1 = getStreetNumber(place) + ", " + getStreet(place);
+                    scope.address2 = getArea(place) + ", " + getSubArea1(place) + ", " + getSubArea2(place);
+                    scope.city =  getCity(place);
+                    scope.state = getState(place);
+                    scope.country = getCountryShort(place);
+                    scope.zip = getPostCode(place);
+                    scope.latitude = getLatitude(place);
+                    scope.longitude = getLongitude(place);
+                    model.$setViewValue(element.val());    
                 });
                 
             });
            
-        
+            
         }
     };
+    
+    function getAddrComponent(place, componentTemplate) {
+        var result;
+        if (!isGooglePlace(place))
+          return;
+        for (var i = 0; i < place.address_components.length; i++) {
+          var addressType = place.address_components[i].types[0];
+          if (componentTemplate[addressType]) {
+            result = place.address_components[i][componentTemplate[addressType]];
+            return result;
+          }
+        }
+        return;
+      }
+    	
+    function isGooglePlace(place) {
+        if (!place)
+      		return false;
+      	return !!place.place_id;
+      }
+    	  function getPlaceId(place) {
+          if (!isGooglePlace(place))
+        	    return;
+        	return place.place_id;
+        }
+    	  function getPremise(place) {
+              var COMPONENT_TEMPLATE = { floor: 'long_name' },
+            	    streetNumber = getAddrComponent(place, COMPONENT_TEMPLATE);
+        		  return streetNumber;
+            }
+    	  
+        function getStreetNumber(place) {
+          var COMPONENT_TEMPLATE = { street_number: 'short_name' },
+        	    streetNumber = getAddrComponent(place, COMPONENT_TEMPLATE);
+    		  return streetNumber;
+        }
+    	
+        function getStreet(place) {
+          var COMPONENT_TEMPLATE = { route: 'long_name' },
+        	    street = getAddrComponent(place, COMPONENT_TEMPLATE);
+    		  return street;
+        }
+        
+        function getArea(place) {
+            var COMPONENT_TEMPLATE = { neighborhood: 'long_name' },
+          	    street = getAddrComponent(place, COMPONENT_TEMPLATE);
+      		  return street;
+          }
+        
+        function getSubArea1(place) {
+            var COMPONENT_TEMPLATE = { sublocality_level_1: 'long_name' },
+          	    street = getAddrComponent(place, COMPONENT_TEMPLATE);
+      		  return street;
+          }
+        
+        function getSubArea2(place) {
+            var COMPONENT_TEMPLATE = { sublocality_level_2: 'long_name' },
+          	    street = getAddrComponent(place, COMPONENT_TEMPLATE);
+      		  return street;
+          }
+    	
+        function getCity(place) {
+          var COMPONENT_TEMPLATE = { locality: 'long_name' },
+        	    city = getAddrComponent(place, COMPONENT_TEMPLATE);
+    		  return city;
+        }
+    	
+        function getState(place) {
+          var COMPONENT_TEMPLATE = { administrative_area_level_1: 'long_name' },
+        	    state = getAddrComponent(place, COMPONENT_TEMPLATE);
+        	return state;
+        }
+        
+        function getDistrict(place) {
+          var COMPONENT_TEMPLATE = { administrative_area_level_2: 'short_name' },
+      	      state = getAddrComponent(place, COMPONENT_TEMPLATE);
+        	return state;
+        }
+    	
+        function getCountryShort(place) {
+          var COMPONENT_TEMPLATE = { country: 'short_name' },
+        	    countryShort = getAddrComponent(place, COMPONENT_TEMPLATE);
+        	return countryShort;
+        }
+    	
+        function getCountry(place) {
+        var COMPONENT_TEMPLATE = { country: 'long_name' },
+            country = getAddrComponent(place, COMPONENT_TEMPLATE);
+      	return country;
+      }
+      
+      function getPostCode(place) {
+        var COMPONENT_TEMPLATE = { postal_code: 'long_name' },
+            postCode = getAddrComponent(place, COMPONENT_TEMPLATE);
+        return postCode;
+      }
+      
+      function isGeometryExist(place) {
+        return angular.isObject(place) && angular.isObject(place.geometry);
+      }
+      
+      function getLatitude(place) {
+        if (!isGeometryExist(place)) return;
+        return place.geometry.location.lat();
+      }
+      
+      function getLongitude(place) {
+        if (!isGeometryExist(place)) return;
+        return place.geometry.location.lng();
+      }
 });
 
 userRegistrationApp.controller('MenuController', function ($scope, $location) {
