@@ -26,7 +26,7 @@ public class DemoApplication {
 			userRepository.save(new User("Gustavo", "Ponce", true));
 			userRepository.save(new User("John", "Smith", true));
 			userRepository.save(new User("Jim ", "Morrison", false));
-			userRepository.save(new User("David", "Gilmour", true));
+			userRepository.save(new User("David1", "Gilmour", true));
 			logger.info("The sample data has been generated");
 		};
 	}

@@ -34,7 +34,7 @@ userRegistrationApp.config(function($routeProvider) {
 	        controller  : 'registrationController'
 	    })
 	    // route for the view user page
-	    .when('/viewUser', {
+	    .when('/viewUser/:id', {
 	        templateUrl : 'views/viewUser.html',
 	        controller  : 'userController'
 	    });
@@ -235,8 +235,7 @@ userRegistrationApp.directive('googleplace', function() {
         },
         link: function(scope, element, attrs, model) {
             var options = {
-                types: [],
-                componentRestrictions: {country: 'in'}
+                types: []
             };
             scope.gPlace = new google.maps.places.Autocomplete(element[0], options);
 
@@ -391,7 +390,24 @@ userRegistrationApp.controller('registrationController', function ($scope, $loca
     }
 });
 
-userRegistrationApp.controller('userController', function($scope, Map) {
+userRegistrationApp.controller('userController', ['$scope', '$routeParams', 'UserService', 'Map', function ($scope, $routeParams, UserService, Map) {
+	//$scope.edit = function (id) {
+    console.log('id to be edited', $routeParams.id);
+        
+    fetchUser($routeParams.id);
+
+    function fetchUser(id) {
+        UserService.fetchUser(id)
+            .then(
+                function (d) {
+                	$scope.user = d;
+                },
+                function (errResponse) {
+                    console.error('Error while fetching Users');
+                }
+            );
+    }
+    //}
+    Map.init();    
     
-    Map.init();
-});
+}]);

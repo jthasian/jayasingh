@@ -5,14 +5,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document
 public class User {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
+	//@Field("_id")
+	private ObjectId id;
 	private String firstName;
 
 	private String lastName;
@@ -35,13 +38,11 @@ public class User {
 		this.lastName = lastName;
 		this.active = active;
 	}
-
-
-	public String getId() {
+	public ObjectId getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(ObjectId id) {
 		this.id = id;
 	}
 

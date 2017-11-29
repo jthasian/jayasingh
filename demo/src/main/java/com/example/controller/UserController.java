@@ -45,8 +45,12 @@ public class UserController {
 
 	@ApiOperation(value = "Search a user with an ID",response = User.class)
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-    public User getUser(@PathVariable("id") long id) {
-		return userService.getUserById(id);
+    public User getUser(@PathVariable("id") String id) {
+		System.out.println("^^^^^^^^^^^^^^6 "+id);
+		User user = userService.getUserById(id);
+		
+		System.out.println("^^^^^^^^^^^^^^6 "+user);
+		return user;
 	}
 	
 	 /* Create a user */

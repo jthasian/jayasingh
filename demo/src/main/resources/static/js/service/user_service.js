@@ -2,10 +2,11 @@
 
 angular.module('userRegistrationApp').factory('UserService', ['$http', '$q', function ($http, $q) {
 
-    var REST_SERVICE_URI = 'http://localhost:8400/v1/api/user';
+    var REST_SERVICE_URI = 'http://localhost:8400/v1/api/user/';
 
     var factory = {
         fetchAllUsers: fetchAllUsers,
+        fetchUser: fetchUser,
         createUser: createUser,
         updateUser: updateUser,
         deleteUser: deleteUser
@@ -28,6 +29,20 @@ angular.module('userRegistrationApp').factory('UserService', ['$http', '$q', fun
         return deferred.promise;
     }
 
+    function fetchUser(id) {
+        var deferred = $q.defer();
+        $http.get(REST_SERVICE_URI + id)
+            .then(
+                function (response) {
+                    deferred.resolve(response.data);
+                },
+                function (errResponse) {
+                    console.error('Error while deleting User');
+                    deferred.reject(errResponse);
+                }
+            );
+        return deferred.promise;
+    }
     function createUser(user) {
         var deferred = $q.defer();
         $http.post(REST_SERVICE_URI, user)
