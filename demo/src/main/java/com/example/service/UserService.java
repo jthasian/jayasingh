@@ -6,6 +6,7 @@ import com.example.model.User;
 
 public interface UserService {
 	User getUserById(String id);
+	User getUserByEmail(String email);
 	List<User> getAllUsers();
 	void saveUser(User user);
 	boolean isUserExist(User user);

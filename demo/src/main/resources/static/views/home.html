@@ -25,16 +25,20 @@
 							<th>User ID</th>
 							<th>First Name</th>
 							<th>Last Name</th>
-							<th>Active</th>
+							<th>Phone</th>
+							<th>Email</th>
+							<th>Address</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr ng-repeat = "user in users | filter:searchText">
 							<td>{{$index+1}}</td>
-							<td><a href="#!viewUser/id={{user.id}}" >{{user.firstName}}<a></td>
+							<td><a href="#!viewUser/id={{user.email}}" >{{user.firstName}}<a></td>
 							<td>{{user.lastName}}</td>
-							<td>{{user.active}}</td>
+							<td>{{user.phoneNumber}}</td>
+							<td>{{user.email}}</td>
+							<td>{{user.address.addressLine1}}, {{user.address.addressLine2}}</td>
 							<td><button type = "button" class = "btn btn-xs btn-warning" data-toggle="modal" data-target="#edit_member"  ng-click="editMember($index)" ><span class = "glyphicon glyphicon-edit"></span> Update</button> |
 							 <button type = "button" class = "btn btn-xs btn-danger"  ng-click="deleteMember($index)"><span class = "glyphicon glyphicon-trash"></span> Delete</button></td>
 						</tr>
