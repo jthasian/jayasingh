@@ -35,11 +35,11 @@
 	        			
 	        			<!-- User Details Container -->
 	        			<div class="user-details-container">
-	        				<h4>Test User</h4>
-	        				<h6>Lives in - Bangalore</h6>
+	        				<h4>{{user.firstName}} {{user.lastName}}</h4>
+	        				<h6>Lives in - {{user.address.city}}</h6>
 	        				<div class="ud-details">
-	        					<p><span class="lato-semibold">Email:</span> test@abc.com</p>
-	        					<p><span class="lato-semibold">Contact:</span> +91 - 123456789</p>
+	        					<p><span class="lato-semibold">Email:</span> {{user.email}}</p>
+	        					<p><span class="lato-semibold">Contact:</span> {{user.phoneNumber}}</p>
 	        					<p><span class="lato-semibold">Created date:</span> 10 / 10 / 2017</p>
 	        				</div>
 	        				<div class="ud-links">
@@ -80,10 +80,17 @@
 	        				<h3>Address</h3>
 	        				<!-- Address -->
 	        				<div class="udc-address">
-	        					<p class="margin-bottom-15"><span class="lato-semibold">Address: </span>abc, # FF 312, Ground Floor, Abc Appartments, 2B Block, Bangalore, Karnataka, India - 560078</p>
+	        					<p class="margin-bottom-15">
+	        					<span class="lato-semibold">Address: </span>
+	        					{{user.address.addressLine1}},<br>
+	        					{{user.address.addressLine2}},<br>
+	        					{{user.address.city}},<br>
+	        					{{user.address.state}},<br>
+	        					{{user.address.postalCode}},<br>
+	        					{{user.address.country}}</p>
 	        					<p>
-	        						<span class="lato-semibold">Contact: </span>123456789<br>
-	        						<span class="lato-semibold">Email: </span>: test@abc.com
+	        						<span class="lato-semibold">Contact: </span>{{user.phoneNumber}}<br>
+	        						<span class="lato-semibold">Email: </span>: {{user.email}}
 	        					</p>
 	        					<p class="lato-regular"><a href="#">Edit</a></p>
 	        				</div>

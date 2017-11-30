@@ -1,16 +1,12 @@
 package com.example.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document(collection = "address")
 public class Address {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
 	private String addressLine1;
 	private String addressLine2;

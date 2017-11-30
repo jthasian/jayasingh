@@ -18,7 +18,6 @@ import com.example.service.UserService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -29,7 +28,7 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
-	
+		
 	@ApiOperation(value = "View a list of available users",response = Iterable.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully retrieved list"),
@@ -47,7 +46,7 @@ public class UserController {
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public User getUser(@PathVariable("id") String id) {
 		System.out.println("^^^^^^^^^^^^^^6 userService "+userService);
-		User user = userService.getUserByEmail(id);
+		User user = userService.getUserById(id);
 		
 		System.out.println("^^^^^^^^^^^^^^6 "+user);
 		return user;

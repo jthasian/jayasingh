@@ -1,21 +1,15 @@
 package com.example.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document
+@Document(collection = "users")
 public class User {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
 	//@Field("_id")
-	private ObjectId id;
+	private String id;
 	private String firstName;
 
 	private String lastName;
@@ -38,11 +32,12 @@ public class User {
 		this.lastName = lastName;
 		this.active = active;
 	}
-	public ObjectId getId() {
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(ObjectId id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

@@ -8,6 +8,6 @@ import com.example.model.User;
 @Repository("userRepository")
 public interface UserRepository extends MongoRepository<User, String> {
 
-	User findByEmail(String id);
+	User findByEmail(String email);
 	
 }

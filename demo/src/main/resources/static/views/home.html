@@ -34,7 +34,7 @@
 					<tbody>
 						<tr ng-repeat = "user in users | filter:searchText">
 							<td>{{$index+1}}</td>
-							<td><a href="#!viewUser/id={{user.email}}" >{{user.firstName}}<a></td>
+							<td><a href="#!viewUser/{{user.id}}" >{{user.firstName}}<a></td>
 							<td>{{user.lastName}}</td>
 							<td>{{user.phoneNumber}}</td>
 							<td>{{user.email}}</td>

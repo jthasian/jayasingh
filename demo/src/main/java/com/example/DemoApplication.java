@@ -33,6 +33,8 @@ public class DemoApplication {
 	public CommandLineRunner setup(UserRepository userRepository) {
 		return (args) -> {
 			
+//			userRepository.deleteAll();
+//			
 //			User user = new User("Rajesh", "Engimoori", true);
 //			user.setEmail("test@test.com");
 //			user.setUserName("raajesh");
@@ -47,14 +49,15 @@ public class DemoApplication {
 //			address.setPostalCode("560068");
 //			address.setState("Karnataka");
 //			user.setAddress(address);
-			
-//			User user = new User("Jaya", "Singh", true);
+//			userRepository.save(user);
+//			
+//			user = new User("Jaya", "Singh", true);
 //			user.setEmail("test1@test1.com");
 //			user.setUserName("jayasingh");
 //			user.setPhoneNumber(12345678);
 //			user.setPassword("jayasingh");
 //			user.setRepeatPassword("jayasingh");
-//			Address address = new Address();
+//			address = new Address();
 //			address.setAddressLine1("Blidvädersgatan");
 //			address.setAddressLine2("Sweeden ST");
 //			address.setCity("Göteborg");
@@ -64,15 +67,15 @@ public class DemoApplication {
 //			user.setAddress(address);
 //			
 //			userRepository.save(user);
-			System.out.println("Customers found with findByLastName('Smith'):");
-			System.out.println("--------------------------------");
-			User user = userRepository.findByEmail("test1@test1.com");
-				System.out.println(user.getFirstName());
-			logger.info("The sample data has been generated");
+//			System.out.println("Customers found with findByLastName('Smith'):");
+//			System.out.println("--------------------------------");
+//			user = userRepository.findByEmail("test1@test1.com");
+//				System.out.println(user.getFirstName());
+//			logger.info("The sample data has been generated");
 		};
 	}
 	
-	//remove _class
+	//to remove _class
     @Bean
     public MongoTemplate mongoTemplate(MongoDbFactory mongoDbFactory,
                                        MongoMappingContext context) {
