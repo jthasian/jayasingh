@@ -2,7 +2,7 @@
 
 	<div class="row">
 		<div class="col-md-12 appt-list">
-			<form class="form-horizontal">
+			<form ng-submit="submit()" name="myForm" class="form-horizontal">
 				<fieldset>
 
 					<!-- Form Name -->
@@ -15,7 +15,7 @@
 							<label class="col-sm-4 small control-lable" for="firstname">First
 								name</label>
 							<div class="col-md-7">
-								<input type="text" ng-model="ctrl.user.firstname" id=""
+								<input type="text" ng-model="user.firstname" id=""
 									class="title form-control input-xs"
 									placeholder="Enter your first name" required />
 							</div>
@@ -24,7 +24,7 @@
 							<label class="col-sm-4 small control-lable" for="lastname">Last
 								Name</label>
 							<div class="col-md-7">
-								<input type="text" ng-model="ctrl.user.lastname" id="value"
+								<input type="text" ng-model="user.lastname" id=""
 									class="form-control input-xs"
 									placeholder="Enter your last name" />
 							</div>
@@ -34,14 +34,14 @@
 						<div class="form-group col-md-6">
 							<label class="col-sm-4 small control-lable" for="username">Email</label>
 							<div class="col-md-7">
-								<input type="email" ng-model="user.username" id="value"
+								<input type="email" ng-model="user.username" id=""
 									class="form-control input-xs" placeholder="Enter your email" />
 							</div>
 						</div>
 						<div class="form-group col-md-6">
 							<label class="col-sm-4 small control-lable" for="phone">Phone</label>
 							<div class="col-md-7">
-								<input type="text" ng-model="user.phone" id="value"
+								<input type="text" ng-model="user.phone" id=""
 									class="form-control input-xs" placeholder="Enter your phone" />
 							</div>
 						</div>
@@ -50,7 +50,7 @@
 						<div class="form-group col-md-6">
 							<label class="col-sm-4 small control-lable" for="password">Password</label>
 							<div class="col-md-7">
-								<input type="password" ng-model="ctrl.user.password" id="value"
+								<input type="password" ng-model="user.password" id=""
 									class="form-control input-xs" placeholder="Enter your password" />
 							</div>
 						</div>
@@ -59,8 +59,8 @@
 							<label class="col-sm-4 small control-lable" for="repeatpassword">Repeat
 								Password</label>
 							<div class="col-md-7">
-								<input type="password" ng-model="ctrl.user.repeatpassword"
-									id="value" class="form-control input-xs"
+								<input type="password" ng-model="user.repeatpassword"
+									id="" class="form-control input-xs"
 									placeholder="Repeat password" />
 							</div>
 						</div>
@@ -72,7 +72,7 @@
 						<div class="form-group col-md-6">
 
 							<div class="col-md-10">
-								<input type="checkbox" ng-model="showInMap" id="value"
+								<input type="checkbox" ng-model="showInMap" id=""
 									ng-change="ShowHide()" /><label class="control-lable"
 									for="showInMap">Like to show us you in map?</label>
 							</div>
@@ -81,7 +81,7 @@
 							<label class="col-sm-4 small control-lable" for="addressLine1">Choose
 								Address From Map</label>
 							<div class="col-md-7">
-								<input type="text" ng-model="chosenPlace" id="value"
+								<input type="text" ng-model="chosenPlace" id=""
 								address1=user.addressLine1 
 								address2=user.addressLine2
 								city=user.city 
@@ -97,14 +97,14 @@
 					</div>
 					<div class="row">
 
-					<input type="hidden" ng-model="user.latitude" id="value"/>
-					<input type="hidden" ng-model="user.longitude" id="value"/>
+					<input type="hidden" ng-model="user.latitude" id=""/>
+					<input type="hidden" ng-model="user.longitude" id=""/>
 									
 						<div class="form-group col-md-6">
 							<label class="col-sm-4 small control-lable" for="addressLine1">Address
 								Line 1</label>
 							<div class="col-md-7">
-								<input type="text" ng-model="user.addressLine1" id="value"
+								<input type="text" ng-model="user.addressLine1" id=""
 									class="form-control input-xs"
 									placeholder="Enter your address line1" />
 							</div>
@@ -113,7 +113,7 @@
 							<label class="col-sm-4 small control-lable" for="addressLine2">Address
 								Line 2</label>
 							<div class="col-md-7">
-								<input type="text" ng-model="user.addressLine2" id="value"
+								<input type="text" ng-model="user.addressLine2" id=""
 									class="form-control input-xs"
 									placeholder="Enter your address line2" />
 							</div>
@@ -124,7 +124,7 @@
 							<label class="col-sm-4 small control-lable" for="city">City
 								/ Town</label>
 							<div class="col-md-7">
-								<input type="text" ng-model="user.city" id="value"
+								<input type="text" ng-model="user.city" id=""
 									class="form-control input-xs" placeholder="Enter your city" />
 							</div>
 						</div>
@@ -132,7 +132,7 @@
 							<label class="col-sm-4 small control-lable" for="state">State
 								/ Province / Region</label>
 							<div class="col-md-7">
-								<input type="text" ng-model="user.state" id="value"
+								<input type="text" ng-model="user.state" id=""
 									class="form-control input-xs" placeholder="Enter your phone" />
 							</div>
 						</div>
@@ -142,7 +142,7 @@
 							<label class="col-sm-4 small control-lable" for="postal-code">Zip
 								/ Postal Code</label>
 							<div class="col-md-7">
-								<input type="text" ng-model="user.postalCode" id="value"
+								<input type="text" ng-model="user.postalCode" id=""
 									class="form-control input-xs"
 									placeholder="Enter your zip or postal code" />
 							</div>
@@ -150,7 +150,7 @@
 						<div class="form-group col-md-6">
 							<label class="col-sm-4 small control-lable" for="country">Country</label>
 							<div class="col-md-7">
-								<select ng-model="user.country" id="value"
+								<select ng-model="user.country" id=""
 									class="form-control input-sm">
 									<option value="" selected="selected">(please select a
 										country)</option>
@@ -404,8 +404,8 @@
 						</div>
 					</div>
 					<div class="form-actions col-md-12" align="center">
-						<button type="button" class="btn btn-xs btn-primary"
-							ng-model="register">Register</button>
+						<button type="submit" class="btn btn-xs btn-primary"
+							ng-model="register" ng-disabled="myForm.$invalid">Register</button>
 						<button type="button" class="btn btn-xs btn-primary"
 							ng-model="cancel">Cancel</button>
 					</div>

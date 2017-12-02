@@ -408,6 +408,41 @@ userRegistrationApp.controller('userController', ['$scope', '$routeParams', 'Use
             );
     }
     //}
-    Map.init();    
+    Map.init();  
+    
+    var self = this;
+    self.users = [];
+    self.submit = submit;
+    self.edit = edit;
+    self.remove = remove;
+    self.reset = reset;
+
+    function createUser(user) {
+    	alert('createUser');
+        UserService.createUser(user)
+            .then(
+                fetchAllUsers,
+                function (errResponse) {
+                    console.error('Error while creating User');
+                }
+            );
+    }
+    
+    
+    function submit() {
+    	alert('submit');
+        if (self.user.id === null) {
+        	alert('submit in ');
+            console.log('Saving New User', self.user);
+            createUser(self.user);
+        } else {
+            console.log('User updated with id ', self.user.id);
+        }
+    }
+
+    function reset() {
+    	$scope.myForm.$setPristine(); //reset Form
+    }
+    
     
 }]);
