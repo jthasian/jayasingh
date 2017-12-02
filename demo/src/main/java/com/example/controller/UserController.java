@@ -2,6 +2,8 @@ package com.example.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.example.exception.ErrorInfo;
 import com.example.model.User;
 import com.example.service.UserService;
 
@@ -65,5 +68,14 @@ public class UserController {
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("user/{id}").buildAndExpand(user.getId()).toUri());
         return new ResponseEntity<>(user, headers, HttpStatus.CREATED);
+    }
+	
+	@RequestMapping("/**")
+    public ResponseEntity<ErrorInfo> unmappedRequest(HttpServletRequest request) {
+        String uri = request.getRequestURI();
+        //throw new UnknownResourceException("There is no resource for path " + uri);
+        HttpHeaders headers = new HttpHeaders();
+        ErrorInfo errorInfo = new ErrorInfo("There is no resource for path " + uri);
+        return new ResponseEntity<>(errorInfo, headers, HttpStatus.BAD_REQUEST);
     }
 }
