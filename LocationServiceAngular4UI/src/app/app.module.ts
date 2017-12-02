@@ -8,6 +8,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { LocationsearchComponent } from './components/locationsearch/locationsearch.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -16,12 +17,14 @@ import { FooterComponent } from './footer/footer.component';
     ContactComponent,
     LocationsearchComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      { path: '', component: AppComponent }
+      { path: '', component: HomeComponent },
+      { path: 'about', component: AboutComponent }
     ])
 
   ],
