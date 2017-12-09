@@ -69,7 +69,7 @@ userRegistrationApp.controller('contactController', function($scope) {
 
 });
 
-userRegistrationApp.controller('searchUserController', function($scope, Map) {
+userRegistrationApp.controller('searchUserController', ['$scope', 'UserService', 'Map', function ($scope, UserService, Map) {
     
     $scope.place = {};
     
@@ -95,7 +95,23 @@ userRegistrationApp.controller('searchUserController', function($scope, Map) {
     }
     
     Map.init();
-});
+    
+    $scope.users = [];
+	
+	fetchAllUsers();
+
+    function fetchAllUsers() {
+        UserService.fetchAllUsers()
+            .then(
+                function (d) {
+                	$scope.users = d;
+                },
+                function (errResponse) {
+                    console.error('Error while fetching Users');
+                }
+            );
+    }
+}]);
 
 userRegistrationApp.service('Map', function($q) {
 	
@@ -125,6 +141,38 @@ userRegistrationApp.service('Map', function($q) {
 				map.setCenter(geolocate);
 				
 			});
+			
+		} else {
+			document.getElementById('map').innerHTML = 'No Geolocation Support.';
+		}
+		this.places = new google.maps.places.PlacesService(map);
+	}
+	
+	this.viewUserMap = function(latitude, longitude) {
+		if(!!navigator.geolocation) {
+			
+			
+			var mapOptions = {
+				zoom: 15,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			
+			map = new google.maps.Map(document.getElementById('map'), mapOptions);
+		
+			//navigator.geolocation.getCurrentPosition(function(position) {
+			
+				var geolocate = new google.maps.LatLng(latitude, longitude);
+
+				var marker = new google.maps.Marker({
+	        		map: map,
+	                position: geolocate,
+	                title: 'You are here'
+	                
+	              });
+	            				
+				map.setCenter(geolocate);
+				
+			//});
 			
 		} else {
 			document.getElementById('map').innerHTML = 'No Geolocation Support.';
@@ -423,6 +471,8 @@ userRegistrationApp.controller('userController', ['$scope', '$routeParams', 'Use
             .then(
                 function (d) {
                 	$scope.user = d;
+                	alert($scope.user.address.latitude);
+                	Map.viewUserMap($scope.user.address.latitude, $scope.user.address.longitude);  
                 },
                 function (errResponse) {
                     console.error('Error while fetching Users');
@@ -430,6 +480,7 @@ userRegistrationApp.controller('userController', ['$scope', '$routeParams', 'Use
             );
     }
     //}
-    Map.init();  
+    //alert($scope.user.address.latitude);
+    //Map.viewUserMap($scope.user.address.latitude, $scope.user.address.longitude);  
     
 }]);
