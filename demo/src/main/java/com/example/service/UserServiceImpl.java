@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void saveUser(User user) {
-        User existing = userRepository.findOne(user.getId());
+//        User existing = userRepository.findOne(user.getId());
 //        if (existing != null) {
 //        }
         userRepository.save(user);
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean isUserExist(User user) {
-		return userRepository.findOne(user.getId()) != null;
+		return userRepository.findByEmail(user.getEmail()) != null;
 	}
 
 	@Override

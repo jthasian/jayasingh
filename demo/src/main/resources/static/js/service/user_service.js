@@ -44,8 +44,7 @@ angular.module('userRegistrationApp').factory('UserService', ['$http', '$q', fun
         return deferred.promise;
     }
     function createUser(user) {
-    	alert('createUser userservice ');
-        var deferred = $q.defer();
+    	var deferred = $q.defer();
         $http.post(REST_SERVICE_URI, user)
             .then(
                 function (response) {

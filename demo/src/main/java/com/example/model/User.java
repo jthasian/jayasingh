@@ -1,7 +1,10 @@
 package com.example.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.example.repository.CascadeSave;
 
 @Document(collection = "users")
 public class User {
@@ -18,6 +21,8 @@ public class User {
 	private String repeatPassword;
 	private String email;
 	private Integer phoneNumber;
+	//@DBRef
+	//@CascadeSave
 	private Address address;
 
 	private boolean active;

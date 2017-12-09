@@ -381,14 +381,36 @@ userRegistrationApp.controller('MenuController', function ($scope, $location) {
     }
 });
 
-userRegistrationApp.controller('registrationController', function ($scope, $location) {
+userRegistrationApp.controller('registrationController', ['$scope', 'UserService', function ($scope, UserService) {
+
+	var user = this;
+	user = [{"id":"null","firstName":"dddd","lastName":"","userName":"","password":"","repeatPassword":"","email":"","phoneNumber":"","address":{"id":null,"addressLine1":"","addressLine2":"","city":"","state":"","postalCode":"","country":"","latitude":null,"longitude":null},"active":null}];
 	//This will hide the DIV by default.
     $scope.IsVisible = false;
     $scope.ShowHide = function () {
         //If DIV is visible it will be hidden and vice versa.
         $scope.IsVisible = $scope.showInMap;
     }
-});
+    
+    $scope.submit = function(userForm) {
+            console.log('Saving New User', user);
+            createUser($scope.user);
+    }
+
+    function createUser(user) {
+    	UserService.createUser(user)
+            .then(
+                alert("Done"),
+                function (errResponse) {
+                    console.error('Error while creating User');
+                }
+            );
+    }
+    function reset() {
+    	$scope.myForm.$setPristine(); //reset Form
+    }
+
+}]);
 
 userRegistrationApp.controller('userController', ['$scope', '$routeParams', 'UserService', 'Map', function ($scope, $routeParams, UserService, Map) {
 	//$scope.edit = function (id) {
@@ -409,40 +431,5 @@ userRegistrationApp.controller('userController', ['$scope', '$routeParams', 'Use
     }
     //}
     Map.init();  
-    
-    var self = this;
-    self.users = [];
-    self.submit = submit;
-    self.edit = edit;
-    self.remove = remove;
-    self.reset = reset;
-
-    function createUser(user) {
-    	alert('createUser');
-        UserService.createUser(user)
-            .then(
-                fetchAllUsers,
-                function (errResponse) {
-                    console.error('Error while creating User');
-                }
-            );
-    }
-    
-    
-    function submit() {
-    	alert('submit');
-        if (self.user.id === null) {
-        	alert('submit in ');
-            console.log('Saving New User', self.user);
-            createUser(self.user);
-        } else {
-            console.log('User updated with id ', self.user.id);
-        }
-    }
-
-    function reset() {
-    	$scope.myForm.$setPristine(); //reset Form
-    }
-    
     
 }]);

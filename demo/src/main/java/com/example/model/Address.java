@@ -14,6 +14,9 @@ public class Address {
 	private String state;
 	private String postalCode;
 	private String country;
+	private String latitude;
+	private String longitude;
+	
 	public String getId() {
 		return id;
 	}
@@ -55,5 +58,17 @@ public class Address {
 	}
 	public void setCountry(String country) {
 		this.country = country;
+	}
+	public String getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+	public String getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
 	}
 }

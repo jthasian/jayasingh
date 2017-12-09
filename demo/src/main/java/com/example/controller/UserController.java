@@ -20,6 +20,8 @@ import com.example.model.User;
 import com.example.service.UserService;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -46,6 +48,9 @@ public class UserController {
 	}
 
 	@ApiOperation(value = "Search a user with an ID",response = User.class)
+	@ApiImplicitParams({
+        @ApiImplicitParam(name = "id", value = "User's id", required = false, dataType = "string", paramType = "query", defaultValue="1234")
+      })
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public User getUser(@PathVariable("id") String id) {
 		System.out.println("^^^^^^^^^^^^^^6 userService "+userService);

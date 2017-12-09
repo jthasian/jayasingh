@@ -33,49 +33,49 @@ public class DemoApplication {
 	public CommandLineRunner setup(UserRepository userRepository) {
 		return (args) -> {
 			
-//			userRepository.deleteAll();
-//			
-//			User user = new User("Rajesh", "Engimoori", true);
-//			user.setEmail("test@test.com");
-//			user.setUserName("raajesh");
-//			user.setPhoneNumber(12345678);
-//			user.setPassword("rajesh");
-//			user.setRepeatPassword("rajesh");
-//			Address address = new Address();
-//			address.setAddressLine1("VTM Rama");
-//			address.setAddressLine2("NGR Layout");
-//			address.setCity("Bangalore");
-//			address.setCountry("India");
-//			address.setPostalCode("560068");
-//			address.setState("Karnataka");
-//			user.setAddress(address);
-//			userRepository.save(user);
-//			
-//			user = new User("Jaya", "Singh", true);
-//			user.setEmail("test1@test1.com");
-//			user.setUserName("jayasingh");
-//			user.setPhoneNumber(12345678);
-//			user.setPassword("jayasingh");
-//			user.setRepeatPassword("jayasingh");
-//			address = new Address();
-//			address.setAddressLine1("Blidvädersgatan");
-//			address.setAddressLine2("Sweeden ST");
-//			address.setCity("Göteborg");
-//			address.setCountry("Sweeden");
-//			address.setPostalCode("45678");
-//			address.setState("Göteborg");
-//			user.setAddress(address);
-//			
-//			userRepository.save(user);
-//			System.out.println("Customers found with findByLastName('Smith'):");
-//			System.out.println("--------------------------------");
-//			user = userRepository.findByEmail("test1@test1.com");
-//				System.out.println(user.getFirstName());
-//			logger.info("The sample data has been generated");
+			userRepository.deleteAll();
+			
+			User user = new User("Rajesh", "Engimoori", true);
+			user.setEmail("test@test.com");
+			user.setUserName("raajesh");
+			user.setPhoneNumber(12345678);
+			user.setPassword("rajesh");
+			user.setRepeatPassword("rajesh");
+			Address address = new Address();
+			address.setAddressLine1("VTM Rama");
+			address.setAddressLine2("NGR Layout");
+			address.setCity("Bangalore");
+			address.setCountry("India");
+			address.setPostalCode("560068");
+			address.setState("Karnataka");
+			user.setAddress(address);
+			userRepository.save(user);
+			
+			user = new User("Jaya", "Singh", true);
+			user.setEmail("test1@test1.com");
+			user.setUserName("jayasingh");
+			user.setPhoneNumber(12345678);
+			user.setPassword("jayasingh");
+			user.setRepeatPassword("jayasingh");
+			address = new Address();
+			address.setAddressLine1("Blidvädersgatan");
+			address.setAddressLine2("Sweeden ST");
+			address.setCity("Göteborg");
+			address.setCountry("Sweeden");
+			address.setPostalCode("45678");
+			address.setState("Göteborg");
+			user.setAddress(address);
+			
+			userRepository.save(user);
+			System.out.println("Customers found with findByLastName('Smith'):");
+			System.out.println("--------------------------------");
+			user = userRepository.findByEmail("test1@test1.com");
+				System.out.println(user.getFirstName());
+			logger.info("The sample data has been generated");
 		};
 	}
 	
-	//to remove _class
+	//remove _class
     @Bean
     public MongoTemplate mongoTemplate(MongoDbFactory mongoDbFactory,
                                        MongoMappingContext context) {

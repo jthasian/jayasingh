@@ -27,4 +27,23 @@ public class SwaggerConfig {
 				"Apache License Version 2.0", "https://www.apache.org/licenses/LICENSE-2.0");
 		return apiInfo;
 	}
+	
+	
+//	@Bean
+//	public Docket postsApi() {
+//		return new Docket(DocumentationType.SWAGGER_2).groupName("public-api")
+//				.apiInfo(apiInfo()).select().paths(postPaths()).build();
+//	}
+//
+//	private Predicate<String> postPaths() {
+//		return or(regex("/api/posts.*"), regex("/api/javainuse.*"));
+//	}
+//
+//	private ApiInfo apiInfo() {
+//		return new ApiInfoBuilder().title("JavaInUse API")
+//				.description("JavaInUse API reference for developers")
+//				.termsOfServiceUrl("http://javainuse.com")
+//				.contact("javainuse@gmail.com").license("JavaInUse License")
+//				.licenseUrl("javainuse@gmail.com").version("1.0").build();
+//	}
 }
