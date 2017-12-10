@@ -11,7 +11,7 @@
 					<input type="hidden" ng-model="user.id" id="id"/>
 					<div class="row">
 					<div class="form-group col-md-10">
-					    <input type="file" name="img[]" class="file">
+					    <input type="file" name="img[]" class="file" ng-file-select="onFileSelect($files)" ng-model="imageSrc">
 					    <div class="input-group col-md-10">
 					      <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
 					      <input type="text" class="form-control input-lg" disabled placeholder="Upload Image">
@@ -21,6 +21,8 @@
 					    </div>
 					  </div>
 					</div>
+					
+					<div><img ng-src="{{imageSrc}}" /></div>
 					
 					<div class="form-actions col-md-10" align="center">
 					
