@@ -26,7 +26,7 @@
 	        		
 	        		<!-- User Photo -->
 	        		<div class="col-sm-2">
-	        			<div ><img src="../images/400x200.png" class="user"></div>
+	        			<div ><img src="../images/default_profile.jpg" class="user"></div>
 	        		</div>
 	        		<!-- /User Photo -->
 	        		
@@ -44,16 +44,15 @@
 	        				</div>
 	        				<div class="ud-links">
 	        					<span class="udl-l">
-		        					<a href="#">Edit Profile</a>
-		        					<a href="#">Change Photo</a>
+		        					<a href="" ng-click="editProfile()">Edit Profile</a>
+		        					<a href="" ng-click="editPhoto()">Change Photo</a>
 	        					</span>
 	        				</div>
 	        			</div>
 	        			<!-- /User Details Container -->
 	        			
 					</div>
-					<!-- /User Details Column -->
-					
+					<!-- /User Details Column -->					
 	            </div>
 	            <!-- /Row -->
             
@@ -92,7 +91,7 @@
 	        						<span class="lato-semibold">Contact: </span>{{user.phoneNumber}}<br>
 	        						<span class="lato-semibold">Email: </span>: {{user.email}}
 	        					</p>
-	        					<p class="lato-regular"><a href="#">Edit</a></p>
+	        					<p class="lato-regular"><a href="" ng-click="editAddress()">Edit</a></p>
 	        				</div>
 	        				<!-- /Address -->
 	        			</div>

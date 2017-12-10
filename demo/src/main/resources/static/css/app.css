@@ -82,3 +82,8 @@ h3 img {
   background-position: center center;
   background-size: cover;
 }
+
+.file {
+  visibility: hidden;
+  position: absolute;
+}

@@ -1,6 +1,6 @@
 'use strict';
 
-var userRegistrationApp = angular.module('userRegistrationApp', ['ngRoute']);
+var userRegistrationApp = angular.module('userRegistrationApp', ['ngRoute', 'ngTouch','ngAnimate','ui.bootstrap']);
 
 // configure our routes
 userRegistrationApp.config(function($routeProvider) {
