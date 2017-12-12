@@ -19,7 +19,7 @@
 			<div class = "container-fluid">
 				<br />
 				<br />
-				<table nhyuh = "table table-responsive-xs table-bordered table-condensed table-striped table-hover">
+				<table class= "responstable table table-responsive-xs table-bordered table-condensed table-striped table-hover">
 					<thead class="thead-light">
 						<tr>
 							<th>User ID</th>
@@ -39,8 +39,8 @@
 							<td>{{user.phoneNumber}}</td>
 							<td>{{user.email}}</td>
 							<td>{{user.address.addressLine1}}, {{user.address.addressLine2}}</td>
-							<td><button type = "button" class = "btn btn-xs btn-warning" data-toggle="modal" data-target="#edit_member"  ng-click="editMember($index)" ><span class = "glyphicon glyphicon-edit"></span> Update</button> |
-							 <button type = "button" class = "btn btn-xs btn-danger"  ng-click="deleteMember($index)"><span class = "glyphicon glyphicon-trash"></span> Delete</button></td>
+							<td><button type = "button" class = "btn btn-xs btn-custom" data-toggle="modal" data-target="#edit_member"  ng-click="editMember($index)" ><span class = "glyphicon glyphicon-edit"></span> Update</button> |
+							 <button type = "button" class = "btn btn-xs btn-custom"  ng-click="deleteMember($index)"><span class = "glyphicon glyphicon-trash"></span> Delete</button></td>
 						</tr>
 					</tbody>
 				</table>
