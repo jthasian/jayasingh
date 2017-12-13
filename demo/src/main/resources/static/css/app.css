@@ -88,15 +88,6 @@ h3 img {
   position: absolute;
 }
 
-/*
-
-RESPONSTABLE 2.0 by jordyvanraaij
-  Designed mobile first!
-
-If you like this solution, you might also want to check out the 1.0 version:
-  https://gist.github.com/jordyvanraaij/9069194
-
-*/
 .responstable {
   margin: 1em 0;
   width: 100%;
@@ -223,4 +214,22 @@ fieldset[disabled] .btn-custom.active {
 .btn-custom .badge { 
   color: #167F92; 
   background-color: #FFFFFF; 
+}
+
+a:link {
+    color: #167F92;
+	text-decoration:none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    color:#075866;
+}
+
+a:active {
+    text-decoration: none;
 }
