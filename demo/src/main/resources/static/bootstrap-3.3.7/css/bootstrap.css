@@ -2715,6 +2715,14 @@ select.input-sm {
   height: 30px;
   line-height: 30px;
 }
+select.input-xs {
+  height: 20px;
+  line-height: 20px;
+ 
+    
+    padding: 1px 5px;
+    border-radius: 3px;
+}
 textarea.input-sm,
 select[multiple].input-sm {
   height: auto;

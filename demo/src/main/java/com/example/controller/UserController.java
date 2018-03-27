@@ -2,6 +2,8 @@ package com.example.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,12 +15,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.example.exception.ErrorInfo;
 import com.example.model.User;
 import com.example.service.UserService;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -29,7 +33,7 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
-	
+		
 	@ApiOperation(value = "View a list of available users",response = Iterable.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully retrieved list"),
@@ -44,9 +48,12 @@ public class UserController {
 	}
 
 	@ApiOperation(value = "Search a user with an ID",response = User.class)
+	@ApiImplicitParams({
+        @ApiImplicitParam(name = "id", value = "User's id", required = false, dataType = "string", paramType = "query", defaultValue="1234")
+      })
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public User getUser(@PathVariable("id") String id) {
-		System.out.println("^^^^^^^^^^^^^^6 "+id);
+		System.out.println("^^^^^^^^^^^^^^6 userService "+userService);
 		User user = userService.getUserById(id);
 		
 		System.out.println("^^^^^^^^^^^^^^6 "+user);
@@ -66,5 +73,14 @@ public class UserController {
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("user/{id}").buildAndExpand(user.getId()).toUri());
         return new ResponseEntity<>(user, headers, HttpStatus.CREATED);
+    }
+	
+	@RequestMapping("/**")
+    public ResponseEntity<ErrorInfo> unmappedRequest(HttpServletRequest request) {
+        String uri = request.getRequestURI();
+        //throw new UnknownResourceException("There is no resource for path " + uri);
+        HttpHeaders headers = new HttpHeaders();
+        ErrorInfo errorInfo = new ErrorInfo("There is no resource for path " + uri);
+        return new ResponseEntity<>(errorInfo, headers, HttpStatus.BAD_REQUEST);
     }
 }

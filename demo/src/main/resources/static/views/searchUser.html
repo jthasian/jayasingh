@@ -18,7 +18,7 @@
 							zip=user.postalCode latitude=user.latitude
 							longitude=user.longitude placeholder="Enter address" /> <span
 							class="input-group-btn">
-							<button class="btn btn-xs btn-primary"
+							<button class="btn btn-xs btn-custom"
 								ng-disabled="searchForm.$invalid">Search</button>
 						</span>
 					</div>
@@ -26,45 +26,23 @@
 				</div>
 				<div class="col-md-4 appt-list">
 					<div class="col-sm-4 input-group"></div>
-					<div class="udc-address">
+					
+					<div ng-repeat = "user in users" class="udc-address">
 						<p class="lato-regular">
-							<a href="#">User1</a>
+							<a href="#!viewUser/{{user.id}}" >{{user.firstName}} {{user.lastName}}</a>
 						</p>
 						<p>
-							<span class="lato-semibold">Address: </span>abc, # FF 312, Ground
-							Floor, Abc Appartments, 2B Block, Bangalore, Karnataka, India -
-							560078<br>
-							<span class="lato-semibold">Contact: </span>123456789<br>
-							<span class="lato-semibold">Email: </span> test@abc.com<br>
+							<span class="lato-semibold">Address: </span>
+								{{user.address.addressLine1}}, 
+								{{user.address.addressLine2}}, 
+								{{user.address.city}}, 
+								{{user.address.state}}, 
+								{{user.address.country}} - {{user.address.postalCode}}<br>
+							<span class="lato-semibold">Contact: </span>{{user.email}}<br>
+							<span class="lato-semibold">Email: </span>{{user.phoneNumber}}<br>
 							<span class="lato-semibold">Near By: </span> 5 km
 						</p>
-					</div>
-					<div class="udc-address">
-						<p class="lato-regular">
-							<a href="#">User2</a>
-						</p>
-						<p>
-							<span class="lato-semibold">Address: </span>abc, # FF 312, Ground
-							Floor, Abc Appartments, 2B Block, Bangalore, Karnataka, India -
-							560078<br>
-							<span class="lato-semibold">Contact: </span>123456789<br>
-							<span class="lato-semibold">Email: </span> test@abc.com<br>
-							<span class="lato-semibold">Near By: </span> 10 km
-						</p>
-					</div>
-					<div class="udc-address">
-						<p class="lato-regular">
-							<a href="#">User3</a>
-						</p>
-						<p>
-							<span class="lato-semibold">Address: </span>abc, # FF 312, Ground
-							Floor, Abc Appartments, 2B Block, Bangalore, Karnataka, India -
-							560078<br>
-							<span class="lato-semibold">Contact: </span>123456789<br>
-							<span class="lato-semibold">Email: </span> test@abc.com<br>
-							<span class="lato-semibold">Near By: </span> 12 km
-						</p>
-					</div>
+					</div>					
 				</div>
 			</fieldset>
 		</form>

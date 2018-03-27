@@ -1,0 +1,38 @@
+<div class="container modal-body" id="modal-body">
+	<div class="row">
+		<div class="col-md-10 appt-list">
+			<form ng-submit="submit(userForm)" name="userForm" class="form-horizontal" novalidate>
+				<fieldset>
+
+					<!-- Form Name -->
+					<legend>
+						<h3 class="text-primary">Update Profile</h3>
+					</legend>
+					<input type="hidden" ng-model="user.id" id="id"/>
+					<div class="row">
+					<div class="form-group col-md-10">
+					    <input type="file" name="img[]" class="file" ng-file-select="onFileSelect($files)" ng-model="imageSrc">
+					    <div class="input-group col-md-10">
+					      <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+					      <input type="text" class="form-control input-lg" disabled placeholder="Upload Image">
+					      <span class="input-group-btn">
+					        <button class="browse btn btn-custom input-lg" type="button"><i class="glyphicon glyphicon-search"></i> Browse</button>
+					      </span>
+					    </div>
+					  </div>
+					</div>
+					
+					<div><img ng-src="{{imageSrc}}" /></div>
+					
+					<div class="form-actions col-md-10" align="center">
+					
+						<button type="submit" class="btn btn-xs btn-custom"
+							ng-model="register" ng-disabled="userForm.$invalid" ng-click="ok()">Update</button>
+						<button type="button" class="btn btn-xs btn-custom"
+							ng-model="cancel" ng-click="cancelModal()">Cancel</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>

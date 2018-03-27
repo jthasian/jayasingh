@@ -20,13 +20,12 @@
         	<!-- User Info -->
         	<div class="content-box profile-user-info">
         		
-        	
 	            <!-- Row -->
 	        	<div class="row">
 	        		
 	        		<!-- User Photo -->
 	        		<div class="col-sm-2">
-	        			<div ><img src="../images/400x200.png" class="user"></div>
+	        			<div ><img src="../images/default_profile.jpg" class="user"></div>
 	        		</div>
 	        		<!-- /User Photo -->
 	        		
@@ -35,25 +34,24 @@
 	        			
 	        			<!-- User Details Container -->
 	        			<div class="user-details-container">
-	        				<h4>Test User</h4>
-	        				<h6>Lives in - Bangalore</h6>
+	        				<h4>{{user.firstName}} {{user.lastName}}</h4>
+	        				<h6>Lives in - {{user.address.city}}</h6>
 	        				<div class="ud-details">
-	        					<p><span class="lato-semibold">Email:</span> test@abc.com</p>
-	        					<p><span class="lato-semibold">Contact:</span> +91 - 123456789</p>
+	        					<p><span class="lato-semibold">Email:</span> {{user.email}}</p>
+	        					<p><span class="lato-semibold">Contact:</span> {{user.phoneNumber}}</p>
 	        					<p><span class="lato-semibold">Created date:</span> 10 / 10 / 2017</p>
 	        				</div>
 	        				<div class="ud-links">
 	        					<span class="udl-l">
-		        					<a href="#">Edit Profile</a>
-		        					<a href="#">Change Photo</a>
+		        					<a href="" ng-click="editProfile()">Edit Profile</a>
+		        					<a href="" ng-click="editPhoto()">Change Photo</a>
 	        					</span>
 	        				</div>
 	        			</div>
 	        			<!-- /User Details Container -->
 	        			
 					</div>
-					<!-- /User Details Column -->
-					
+					<!-- /User Details Column -->					
 	            </div>
 	            <!-- /Row -->
             
@@ -80,12 +78,19 @@
 	        				<h3>Address</h3>
 	        				<!-- Address -->
 	        				<div class="udc-address">
-	        					<p class="margin-bottom-15"><span class="lato-semibold">Address: </span>abc, # FF 312, Ground Floor, Abc Appartments, 2B Block, Bangalore, Karnataka, India - 560078</p>
+	        					<p class="margin-bottom-15">
+	        					<span class="lato-semibold">Address: </span>
+	        					{{user.address.addressLine1}},<br>
+	        					{{user.address.addressLine2}},<br>
+	        					{{user.address.city}},<br>
+	        					{{user.address.state}},<br>
+	        					{{user.address.postalCode}},<br>
+	        					{{user.address.country}}</p>
 	        					<p>
-	        						<span class="lato-semibold">Contact: </span>123456789<br>
-	        						<span class="lato-semibold">Email: </span>: test@abc.com
+	        						<span class="lato-semibold">Contact: </span>{{user.phoneNumber}}<br>
+	        						<span class="lato-semibold">Email: </span>: {{user.email}}
 	        					</p>
-	        					<p class="lato-regular"><a href="#">Edit</a></p>
+	        					<p class="lato-regular"><a href="" ng-click="editAddress()">Edit</a></p>
 	        				</div>
 	        				<!-- /Address -->
 	        			</div>

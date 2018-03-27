@@ -26,14 +26,22 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void saveUser(User user) {
-		// TODO Auto-generated method stub
-		
+//        User existing = userRepository.findOne(user.getId());
+//        if (existing != null) {
+//        }
+        userRepository.save(user);
 	}
 
 	@Override
 	public boolean isUserExist(User user) {
+		return userRepository.findByEmail(user.getEmail()) != null;
+	}
+
+	@Override
+	public User getUserByEmail(String email) {
 		// TODO Auto-generated method stub
-		return false;
+		System.out.println("^^^^^^^^^^^^^^6 userRepository "+userRepository);
+		return userRepository.findByEmail(email);
 	}
 
 }

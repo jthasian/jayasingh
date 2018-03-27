@@ -1,6 +1,6 @@
 'use strict';
 
-var userRegistrationApp = angular.module('userRegistrationApp', ['ngRoute']);
+var userRegistrationApp = angular.module('userRegistrationApp', ['ngRoute', 'ngTouch','ngAnimate','ui.bootstrap']);
 
 // configure our routes
 userRegistrationApp.config(function($routeProvider) {
@@ -59,44 +59,6 @@ userRegistrationApp.controller('homeController', ['$scope', 'UserService', funct
     }
 }]);
 
-userRegistrationApp.controller('aboutController', function($scope) {
-	console.log("in about")
-    $scope.message = 'Look! I am an about page.';
-});
-
-userRegistrationApp.controller('contactController', function($scope) {
-    $scope.message = 'Contact us! JK. This is just a demo.';
-
-});
-
-userRegistrationApp.controller('searchUserController', function($scope, Map) {
-    
-    $scope.place = {};
-    
-    $scope.search = function() {
-        $scope.apiError = false;
-        Map.search($scope.searchPlace)
-        .then(
-            function(res) { // success
-                Map.addMarker(res);
-                $scope.place.name = res.name;
-                $scope.place.lat = res.geometry.location.lat();
-                $scope.place.lng = res.geometry.location.lng();
-            },
-            function(status) { // error
-                $scope.apiError = true;
-                $scope.apiStatus = status;
-            }
-        );
-    }
-    
-    $scope.send = function() {
-        alert($scope.place.name + ' : ' + $scope.place.lat + ', ' + $scope.place.lng);    
-    }
-    
-    Map.init();
-});
-
 userRegistrationApp.service('Map', function($q) {
 	
 	var map;
@@ -126,6 +88,57 @@ userRegistrationApp.service('Map', function($q) {
 				
 			});
 			
+		} else {
+			document.getElementById('map').innerHTML = 'No Geolocation Support.';
+		}
+		this.places = new google.maps.places.PlacesService(map);
+	}
+	
+	this.viewUserMap = function(address, latitude, longitude) {
+		if(!!navigator.geolocation) {
+			
+			   
+			
+			var mapOptions = {
+				zoom: 15,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			
+			map = new google.maps.Map(document.getElementById('map'), mapOptions);
+			if(latitude != null && longitude != null) {
+				//navigator.geolocation.getCurrentPosition(function(position) {
+				
+				var geolocate = new google.maps.LatLng(latitude, longitude);
+
+				var marker = new google.maps.Marker({
+	        		map: map,
+	                position: geolocate,
+	                title: 'You are here'
+	              });
+	            				
+				map.setCenter(geolocate);
+				
+			//});
+
+			} else {
+				var geocoder = new google.maps.Geocoder();
+
+				   geocoder.geocode({
+				      'address': address
+				   }, 
+				   function(results, status) {
+				      if(status == google.maps.GeocoderStatus.OK) {
+				         new google.maps.Marker({
+				            position: results[0].geometry.location,
+				            map: map
+				         });
+				         map.setCenter(results[0].geometry.location);
+				      }
+				   });
+
+			}
+							
+						
 		} else {
 			document.getElementById('map').innerHTML = 'No Geolocation Support.';
 		}
@@ -381,33 +394,3 @@ userRegistrationApp.controller('MenuController', function ($scope, $location) {
     }
 });
 
-userRegistrationApp.controller('registrationController', function ($scope, $location) {
-	//This will hide the DIV by default.
-    $scope.IsVisible = false;
-    $scope.ShowHide = function () {
-        //If DIV is visible it will be hidden and vice versa.
-        $scope.IsVisible = $scope.showInMap;
-    }
-});
-
-userRegistrationApp.controller('userController', ['$scope', '$routeParams', 'UserService', 'Map', function ($scope, $routeParams, UserService, Map) {
-	//$scope.edit = function (id) {
-    console.log('id to be edited', $routeParams.id);
-        
-    fetchUser($routeParams.id);
-
-    function fetchUser(id) {
-        UserService.fetchUser(id)
-            .then(
-                function (d) {
-                	$scope.user = d;
-                },
-                function (errResponse) {
-                    console.error('Error while fetching Users');
-                }
-            );
-    }
-    //}
-    Map.init();    
-    
-}]);

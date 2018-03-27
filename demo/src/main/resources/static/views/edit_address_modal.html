@@ -1,105 +1,15 @@
-<div class="container">
-
+<div class="container modal-body" id="modal-body">
 	<div class="row">
-		<div class="col-md-12 appt-list">
+		<div class="col-md-10 appt-list">
 			<form ng-submit="submit(userForm)" name="userForm" class="form-horizontal" novalidate>
 				<fieldset>
 
 					<!-- Form Name -->
 					<legend>
-						<h3 class="text-primary">Registration</h3>
+						<h3 class="text-primary">Update Address</h3>
 					</legend>
 					<input type="hidden" ng-model="user.id" id="id"/>
 					<div class="row">
-						<div class="form-group col-md-6">
-							<label class="col-sm-4 small control-lable" for="firstName">First
-								name</label>
-							<div class="col-md-7">
-								<input type="text" ng-model="user.firstName" id="firstName"
-									class="title form-control input-xs"
-									placeholder="Enter your first name" required />
-							</div>
-						</div>
-						<div class="form-group col-md-6">
-							<label class="col-sm-4 small control-lable" for="lastName">Last
-								Name</label>
-							<div class="col-md-7">
-								<input type="text" ng-model="user.lastName" id="lastName"
-									class="form-control input-xs"
-									placeholder="Enter your last name" />
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="form-group col-md-6">
-							<label class="col-sm-4 small control-lable" for="email">Email</label>
-							<div class="col-md-7">
-								<input type="email" ng-model="user.email" id="email"
-									class="form-control input-xs" placeholder="Enter your email" />
-							</div>
-						</div>
-						<div class="form-group col-md-6">
-							<label class="col-sm-4 small control-lable" for="phoneNumber">Phone</label>
-							<div class="col-md-7">
-								<input type="text" ng-model="user.phoneNumber" id="phoneNumber"
-									class="form-control input-xs" placeholder="Enter your phone" />
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="form-group col-md-6">
-							<label class="col-sm-4 small control-lable" for="password">Password</label>
-							<div class="col-md-7">
-								<input type="password" ng-model="user.password" id="password"
-									class="form-control input-xs" placeholder="Enter your password" />
-							</div>
-						</div>
-
-						<div class="form-group col-md-6">
-							<label class="col-sm-4 small control-lable" for="repeatPassword">Repeat
-								Password</label>
-							<div class="col-md-7">
-								<input type="password" ng-model="user.repeatPassword"
-									id="repeatPassword" class="form-control input-xs"
-									placeholder="Repeat password" />
-							</div>
-						</div>
-					</div>
-
-					<h2>Address</h2>
-
-					<div class="row">
-						<div class="form-group col-md-6">
-
-							<div class="col-md-10">
-								<input type="checkbox" ng-model="showInMap" id=""
-									ng-change="ShowHide()" /><label class="control-lable"
-									for="showInMap">Like to show us you in map?</label>
-							</div>
-						</div>
-						<div class="form-group col-md-6" ng-show="IsVisible">
-							<label class="col-sm-4 small control-lable" for="addressLine1">Choose
-								Address From Map</label>
-							<div class="col-md-7">
-								<input type="text" ng-model="chosenPlace" id=""
-								address1=user.address.addressLine1 
-								address2=user.address.addressLine2
-								city=user.address.city 
-								state=user.address.state 
-								country=user.address.country
-								zip=user.address.postalCode
-								latitude=user.address.latitude
-								longitude=user.address.longitude
-									class="form-control input-xs" googleplace
-									placeholder="Enter your address" />
-							</div>
-						</div>
-					</div>
-					<div class="row">
-
-					<input type="hidden" ng-model="user.address.latitude" id=""/>
-					<input type="hidden" ng-model="user.address.longitude" id=""/>
-									
 						<div class="form-group col-md-6">
 							<label class="col-sm-4 small control-lable" for="addressLine1">Address
 								Line 1</label>
@@ -151,7 +61,7 @@
 							<label class="col-sm-4 small control-lable" for="country">Country</label>
 							<div class="col-md-7">
 								<select ng-model="user.address.country" id=""
-									class="form-control input-xs">
+									class="form-control input-sm">
 									<option value="" selected="selected">(please select a
 										country)</option>
 									<option value="AF">Afghanistan</option>
@@ -403,12 +313,13 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-actions col-md-12" align="center">
+			
+					<div class="form-actions col-md-10" align="center">
 					
 						<button type="submit" class="btn btn-xs btn-custom"
-							ng-model="register" ng-disabled="userForm.$invalid">Register</button>
+							ng-model="register" ng-disabled="userForm.$invalid" ng-click="ok()">Update</button>
 						<button type="button" class="btn btn-xs btn-custom"
-							ng-model="cancel">Cancel</button>
+							ng-model="cancel" ng-click="cancelModal()">Cancel</button>
 					</div>
 				</fieldset>
 			</form>

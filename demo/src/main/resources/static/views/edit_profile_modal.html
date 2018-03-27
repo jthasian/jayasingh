@@ -1,0 +1,60 @@
+<div class="container modal-body" id="modal-body">
+	<div class="row">
+		<div class="col-md-10 appt-list">
+			<form ng-submit="submit(userForm)" name="userForm" class="form-horizontal" novalidate>
+				<fieldset>
+
+					<!-- Form Name -->
+					<legend>
+						<h3 class="text-primary">Update Profile</h3>
+					</legend>
+					<input type="hidden" ng-model="user.id" id="id"/>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label class="col-sm-4 small control-lable" for="firstName">First
+								name</label>
+							<div class="col-md-7">
+								<input type="text" ng-model="user.firstName" id="firstName"
+									class="title form-control input-xs"
+									placeholder="Enter your first name" required />
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label class="col-sm-4 small control-lable" for="lastName">Last
+								Name</label>
+							<div class="col-md-7">
+								<input type="text" ng-model="user.lastName" id="lastName"
+									class="form-control input-xs"
+									placeholder="Enter your last name" />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label class="col-sm-4 small control-lable" for="email">Email</label>
+							<div class="col-md-7">
+								<input type="email" ng-model="user.email" id="email"
+									class="form-control input-xs" placeholder="Enter your email" />
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label class="col-sm-4 small control-lable" for="phoneNumber">Phone</label>
+							<div class="col-md-7">
+								<input type="text" ng-model="user.phoneNumber" id="phoneNumber"
+									class="form-control input-xs" placeholder="Enter your phone" />
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-actions col-md-10" align="center">
+					
+						<button type="submit" class="btn btn-xs btn-custom"
+							ng-model="register" ng-disabled="userForm.$invalid" ng-click="ok()">Update</button>
+						<button type="button" class="btn btn-xs btn-custom"
+							ng-model="cancel" ng-click="cancelModal()">Cancel</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>
