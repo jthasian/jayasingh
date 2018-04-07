@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.Arrays;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -8,14 +10,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.convert.CustomConversions;
 import org.springframework.data.mongodb.core.convert.DefaultDbRefResolver;
 import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper;
 import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
 import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-import com.example.model.Address;
-import com.example.model.User;
+import com.example.config.BsonUndefinedToNullObjectConverterFactory;
 import com.example.repository.UserRepository;
 
 @SpringBootApplication
@@ -23,7 +25,6 @@ import com.example.repository.UserRepository;
 public class DemoApplication {
 	
 	private static final Logger logger = LoggerFactory.getLogger(DemoApplication.class);
-
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -84,10 +85,22 @@ public class DemoApplication {
                 new MappingMongoConverter(new DefaultDbRefResolver(mongoDbFactory), context);
         converter.setTypeMapper(new DefaultMongoTypeMapper(null));
 
+        
         MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory, converter);
-
+        
+        MappingMongoConverter mongoMapping = (MappingMongoConverter) mongoTemplate.getConverter();
+        mongoMapping.setCustomConversions(customConversions()); // tell mongodb to use the custom converters
+        mongoMapping.afterPropertiesSet();
+       
         return mongoTemplate;
 
     }
-
+    
+    /**
+     * Returns the list of custom converters that will be used by the MongoDB template
+     * 
+     **/
+     public CustomConversions customConversions() {
+         return new CustomConversions(Arrays.asList(new BsonUndefinedToNullObjectConverterFactory()));
+     }
 }

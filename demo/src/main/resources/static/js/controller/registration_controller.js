@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('userRegistrationApp').controller('registrationController', ['$scope', 'UserService', function ($scope, UserService) {
+angular.module('userRegistrationApp').controller('registrationController', ['$scope', 'UserService', '$location', function ($scope, UserService, $location) {
 
 		var user = this;
 		user = [{"id":"null","firstName":"dddd","lastName":"","userName":"","password":"","repeatPassword":"","email":"","phoneNumber":"","address":{"id":null,"addressLine1":"","addressLine2":"","city":"","state":"","postalCode":"","country":"","latitude":null,"longitude":null},"active":null}];
@@ -19,7 +19,6 @@ angular.module('userRegistrationApp').controller('registrationController', ['$sc
 	    function createUser(user) {
 	    	UserService.createUser(user)
 	            .then(
-	                alert("Done"),
 	                function (errResponse) {
 	                    console.error('Error while creating User');
 	                }

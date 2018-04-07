@@ -2,6 +2,10 @@ package com.example.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.geo.Point;
+import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
+import org.springframework.data.mongodb.core.index.GeoSpatialIndexType;
+import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
 
 @Document(collection = "address")
 public class Address {
@@ -16,6 +20,10 @@ public class Address {
 	private String country;
 	private String latitude;
 	private String longitude;
+	
+	@GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
+    private GeoJsonPoint location;
+
 	
 	public String getId() {
 		return id;
@@ -70,5 +78,11 @@ public class Address {
 	}
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
+	}
+	public Point getLocation() {
+		return location;
+	}
+	public void setLocation(GeoJsonPoint location) {
+		this.location = location;
 	}
 }

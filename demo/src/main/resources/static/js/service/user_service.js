@@ -6,6 +6,7 @@ angular.module('userRegistrationApp').factory('UserService', ['$http', '$q', fun
 
     var factory = {
         fetchAllUsers: fetchAllUsers,
+        fetchAllUsersByLocation: fetchAllUsersByLocation,
         fetchUser: fetchUser,
         createUser: createUser,
         updateUser: updateUser,
@@ -29,6 +30,20 @@ angular.module('userRegistrationApp').factory('UserService', ['$http', '$q', fun
         return deferred.promise;
     }
 
+    function fetchAllUsersByLocation(lat, lng) {
+        var deferred = $q.defer();
+        $http.get(REST_SERVICE_URI +'findByLocation?latitude='+lat+'&longitude='+lng+'&distance=5')
+            .then(
+                function (response) {
+                    deferred.resolve(response.data);
+                },
+                function (errResponse) {
+                    console.error('Error while fetching Users');
+                    deferred.reject(errResponse);
+                }
+            );
+        return deferred.promise;
+    }
     function fetchUser(id) {
         var deferred = $q.defer();
         $http.get(REST_SERVICE_URI + id)

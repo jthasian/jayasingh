@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -12,6 +15,8 @@ import { ContactComponent } from './components/contact/contact.component';
 import { LocationsearchComponent } from './components/locationsearch/locationsearch.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -20,17 +25,26 @@ import { FooterComponent } from './footer/footer.component';
     AboutComponent,
     ContactComponent,
     LocationsearchComponent,
+    HomeComponent,
     HeaderComponent,
     FooterComponent
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+	  HttpModule,
+    HttpClientModule,
+    Ng4LoadingSpinnerModule,
+    IonicModule.forRoot(MyApp),
+    RouterModule.forRoot([
+      { path: '', component: HomeComponent },
+      { path: 'about', component: AboutComponent }
+    ])
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    HomeComponent
   ],
   providers: [
     StatusBar,

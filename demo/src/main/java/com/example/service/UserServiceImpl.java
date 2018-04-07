@@ -3,6 +3,8 @@ package com.example.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.Point;
 import org.springframework.stereotype.Service;
 
 import com.example.model.User;
@@ -42,6 +44,18 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		System.out.println("^^^^^^^^^^^^^^6 userRepository "+userRepository);
 		return userRepository.findByEmail(email);
+	}
+
+	@Override
+	public List<User> findByAddressLocationNear(Point location, Distance distance) {
+		// TODO Auto-generated method stub
+		return userRepository.findByAddressLocationNear(location, distance);
+	}
+
+	@Override
+	public List<User> findByNameAndAddressLocationNear(String name, Point location, Distance distance) {
+		// TODO Auto-generated method stub
+		return userRepository.findByFirstNameAndAddressLocationNear(name, location, distance);
 	}
 
 }
